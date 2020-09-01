@@ -36,6 +36,12 @@ class AuthServices {
       return SignInSignUpResult(message: e.toString());
     }
   }
+
+  static Future<void> signOut() async {
+    await _auth.signOut();
+  }
+
+  static Stream<FirebaseUser> get userStream => _auth.onAuthStateChanged;
 }
 
 class SignInSignUpResult {

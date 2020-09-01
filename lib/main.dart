@@ -1,5 +1,7 @@
 import 'package:flutix/services/services.dart';
+import 'package:flutix/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,49 +10,11 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Sign Up tes'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RaisedButton(
-                child: Text('Sign Up'),
-                onPressed: () async {
-                  SignInSignUpResult result = await AuthServices.signUp(
-                      "kakasi@gmail.com",
-                      "1234567",
-                      "kakasi",
-                      ["Horor", "War", "Action", "Drama"],
-                      "Indonesian");
-                  if (result.user == null) {
-                    print(result.message);
-                  } else {
-                    print(result.user.toString());
-                  }
-                },
-              ),
-              RaisedButton(
-                child: Text('Sign in'),
-                onPressed: () async {
-                  SignInSignUpResult result = await AuthServices.signIn(
-                    "kakasi@gmail.com",
-                    "1234567",
-                  );
-                  if (result.user == null) {
-                    print(result.message);
-                  } else {
-                    print(result.user.toString());
-                  }
-                },
-              )
-            ],
-          ),
-        ),
+    return StreamProvider.value(
+      value: AuthServices.userStream,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Wrapper(),
       ),
     );
   }
