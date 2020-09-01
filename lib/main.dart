@@ -1,6 +1,8 @@
+import 'package:flutix/bloc/blocs.dart';
 import 'package:flutix/services/services.dart';
 import 'package:flutix/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -12,9 +14,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider.value(
       value: AuthServices.userStream,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Wrapper(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => PageBloc(),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Wrapper(),
+        ),
       ),
     );
   }
