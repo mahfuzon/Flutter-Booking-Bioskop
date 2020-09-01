@@ -3,7 +3,7 @@ part of 'services.dart';
 class AuthServices {
   static FirebaseAuth _auth = FirebaseAuth.instance;
 
-  static Future signUp(
+  static Future<SignInSignUpResult> signUp(
     String email,
     String password,
     String name,
@@ -18,6 +18,17 @@ class AuthServices {
         selectedGenres: selectedGenres,
         selectedLanguage: selectedLanguage,
       );
-    } catch (e) {}
+      await UserServices.updateUser(user);
+      return SignInSignUpResult(user: user);
+    } catch (e) {
+      return SignInSignUpResult(message: e.toString());
+    }
   }
+}
+
+class SignInSignUpResult {
+  final User user;
+  final String message;
+
+  SignInSignUpResult({this.user, this.message});
 }
