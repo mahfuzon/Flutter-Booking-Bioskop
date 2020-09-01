@@ -33,6 +33,20 @@ class MyApp extends StatelessWidget {
                     print(result.user.toString());
                   }
                 },
+              ),
+              RaisedButton(
+                child: Text('Sign in'),
+                onPressed: () async {
+                  SignInSignUpResult result = await AuthServices.signIn(
+                    "kakasi@gmail.com",
+                    "1234567",
+                  );
+                  if (result.user == null) {
+                    print(result.message);
+                  } else {
+                    print(result.user.toString());
+                  }
+                },
               )
             ],
           ),
