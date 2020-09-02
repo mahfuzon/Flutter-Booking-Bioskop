@@ -13,11 +13,20 @@ class _MainPageState extends State<MainPage> {
         title: Text('Main Page'),
       ),
       body: Center(
-        child: RaisedButton(
-          child: Text('Sign Out'),
-          onPressed: () async {
-            AuthServices.signOut();
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BlocBuilder<UserBloc, UserState>(
+                builder: (_, userState) => (userState is UserLoaded)
+                    ? Text(userState.user.name)
+                    : SizedBox()),
+            RaisedButton(
+              child: Text('Sign Out'),
+              onPressed: () async {
+                AuthServices.signOut();
+              },
+            ),
+          ],
         ),
       ),
     );

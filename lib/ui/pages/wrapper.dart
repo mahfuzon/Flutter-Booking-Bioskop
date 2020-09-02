@@ -7,10 +7,11 @@ class Wrapper extends StatelessWidget {
     if (firebaseUser == null) {
       if (!(prevPageEvent is GoToSplashPage)) {
         prevPageEvent = GoToSplashPage();
-        context.bloc<PageBloc>().add(GoToLoginPage());
+        context.bloc<PageBloc>().add(GoToSplashPage());
       }
     } else {
       if (!(prevPageEvent is GoToMainPage)) {
+        context.bloc<UserBloc>().add(LoadUser(firebaseUser.uid));
         prevPageEvent = GoToMainPage();
         context.bloc<PageBloc>().add(GoToMainPage());
       }
