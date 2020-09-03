@@ -1,4 +1,5 @@
 import 'package:flutix/bloc/blocs.dart';
+import 'package:flutix/bloc/theme_bloc.dart';
 import 'package:flutix/services/services.dart';
 import 'package:flutix/ui/pages/pages.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +19,14 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (_) => PageBloc()),
           BlocProvider(create: (_) => UserBloc()),
+          BlocProvider(create: (_) => ThemeBloc()),
         ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Wrapper(),
+        child: BlocBuilder<ThemeBloc, ThemeState>(
+          builder: (_, themeState) => MaterialApp(
+            theme: themeState.themeData,
+            debugShowCheckedModeBanner: false,
+            home: Wrapper(),
+          ),
         ),
       ),
     );
