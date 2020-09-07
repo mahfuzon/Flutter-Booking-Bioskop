@@ -6,6 +6,16 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int bottomNavbarIndex;
+  PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    bottomNavbarIndex = 0;
+    pageController = PageController(initialPage: bottomNavbarIndex);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +29,22 @@ class _MainPageState extends State<MainPage> {
               color: Color(0xfff6f7f9),
             ),
           ),
-          ListView(),
+          PageView(
+            onPageChanged: (index) {
+              setState(() {
+                bottomNavbarIndex = index;
+              });
+            },
+            controller: pageController,
+            children: [
+              Center(
+                child: Text('Movie'),
+              ),
+              Center(
+                child: Text('MyTickets'),
+              )
+            ],
+          ),
           createCustomBottomNavbar(),
           Align(
             alignment: Alignment.bottomCenter,
@@ -58,6 +83,43 @@ class _MainPageState extends State<MainPage> {
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
               ),
+            ),
+            child: BottomNavigationBar(
+              onTap: (index) {
+                setState(() {
+                  bottomNavbarIndex = index;
+                  pageController.jumpToPage(index);
+                });
+              },
+              items: [
+                BottomNavigationBarItem(
+                  icon: Container(
+                      margin: EdgeInsets.only(bottom: 6),
+                      height: 20,
+                      child: Image.asset((bottomNavbarIndex == 0)
+                          ? "assets/ic_movie.png"
+                          : "assets/ic_movie_grey.png")),
+                  title: Text('New Movies',
+                      style: GoogleFonts.raleway(
+                          fontSize: 13, fontWeight: FontWeight.w600)),
+                ),
+                BottomNavigationBarItem(
+                  icon: Container(
+                      margin: EdgeInsets.only(bottom: 6),
+                      height: 20,
+                      child: Image.asset((bottomNavbarIndex == 1)
+                          ? "assets/ic_tickets.png"
+                          : "assets/ic_tickets_grey.png")),
+                  title: Text('MyTickets',
+                      style: GoogleFonts.raleway(
+                          fontSize: 13, fontWeight: FontWeight.w600)),
+                ),
+              ],
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              selectedItemColor: mainColor,
+              unselectedItemColor: Color(0xffe5e5e5),
+              currentIndex: bottomNavbarIndex,
             ),
           ),
         ),
