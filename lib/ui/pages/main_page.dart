@@ -37,9 +37,7 @@ class _MainPageState extends State<MainPage> {
             },
             controller: pageController,
             children: [
-              Center(
-                child: Text('Movie'),
-              ),
+              MoviePage(),
               Center(
                 child: Text('MyTickets'),
               )
@@ -52,10 +50,14 @@ class _MainPageState extends State<MainPage> {
               height: 46,
               width: 46,
               margin: EdgeInsets.only(bottom: 42),
+              // TOP UP WALLET
               child: FloatingActionButton(
                 elevation: 0,
                 backgroundColor: accentColor2,
-                onPressed: () {},
+                onPressed: () {
+                  context.bloc<UserBloc>().add(SignOut());
+                  AuthServices.signOut();
+                },
                 child: SizedBox(
                     height: 26,
                     width: 26,
@@ -64,6 +66,7 @@ class _MainPageState extends State<MainPage> {
                       color: Colors.black.withOpacity(0.42),
                     )),
               ),
+              // AKHIR TOP UP WALLET
             ),
           ),
         ],
