@@ -22,6 +22,8 @@ class Wrapper extends StatelessWidget {
         return SplashPage();
       } else if (pageState is OnLoginlPage) {
         return SignInPage();
+      } else if (pageState is OnRegistrationPage) {
+        return SignUpPage(RegistrationData());
       } else {
         return MainPage();
       }

@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/bloc/blocs.dart';
+import 'package:flutix/models/registration_data.dart';
 import 'package:flutix/services/services.dart';
 import 'package:flutix/shared/shared.dart';
 import 'package:flutter/material.dart';
@@ -15,5 +16,7 @@ part 'wrapper.dart';
 part 'main_page.dart';
 part 'splash_page.dart';
 part "movie_page.dart";
-
 part 'sign_in_page.dart';
+part "account_confirmation_page.dart";
+part "preference_page.dart";
+part "sign_up_page.dart";
