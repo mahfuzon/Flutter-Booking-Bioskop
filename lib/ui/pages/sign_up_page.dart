@@ -87,6 +87,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     ? AssetImage("assets/user_pic.png")
                                     : FileImage(
                                         widget.registrationData.profileImage),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -95,6 +96,15 @@ class _SignUpPageState extends State<SignUpPage> {
                       alignment: Alignment.bottomCenter,
                       // BUTTON ADD PHOTO
                       child: GestureDetector(
+                        onTap: () async {
+                          if (widget.registrationData.profileImage == null) {
+                            widget.registrationData.profileImage =
+                                await getProfileImage();
+                          } else {
+                            widget.registrationData.profileImage = null;
+                          }
+                          setState(() {});
+                        },
                         child: Container(
                           height: 28,
                           width: 28,
@@ -105,6 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   (widget.registrationData.profileImage == null)
                                       ? "assets/btn_add_photo.png"
                                       : "assets/btn_del_photo.png"),
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -164,7 +175,45 @@ class _SignUpPageState extends State<SignUpPage> {
               SizedBox(height: 30),
               // BUTTON NEXT
               FloatingActionButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (!(nameController.text.trim() != "" &&
+                      emailController.text.trim() != "" &&
+                      passwordController.text.trim() != "" &&
+                      retypePasswordController.text.trim() != "")) {
+                    Flushbar(
+                            duration: Duration(milliseconds: 1500),
+                            flushbarPosition: FlushbarPosition.TOP,
+                            backgroundColor: Color(0xffff5c83),
+                            message: "Please fill all the fields")
+                        .show(context);
+                  } else if (passwordController.text !=
+                      retypePasswordController.text) {
+                    Flushbar(
+                            duration: Duration(milliseconds: 1500),
+                            flushbarPosition: FlushbarPosition.TOP,
+                            backgroundColor: Color(0xffff5c83),
+                            message: "Mismatch password and confirmed password")
+                        .show(context);
+                  } else if (passwordController.text.length < 6) {
+                    Flushbar(
+                            duration: Duration(milliseconds: 1500),
+                            flushbarPosition: FlushbarPosition.TOP,
+                            backgroundColor: Color(0xffff5c83),
+                            message: "Password's length min 6 characters")
+                        .show(context);
+                  } else if (!EmailValidator.validate(emailController.text)) {
+                    Flushbar(
+                            duration: Duration(milliseconds: 1500),
+                            flushbarPosition: FlushbarPosition.TOP,
+                            backgroundColor: Color(0xffff5c83),
+                            message: "Wrong formatted email address")
+                        .show(context);
+                  } else {
+                    widget.registrationData.name = nameController.text;
+                    widget.registrationData.email = emailController.text;
+                    widget.registrationData.password = passwordController.text;
+                  }
+                },
                 child: Icon(Icons.arrow_forward),
                 backgroundColor: mainColor,
                 elevation: 0,
