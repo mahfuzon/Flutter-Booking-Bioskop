@@ -5,7 +5,7 @@ class RegistrationData {
   String email;
   String password;
   List<String> selectedGenres;
-  String selectedLanguage;
+  String selectedLang;
   File profileImage;
 
   RegistrationData(
@@ -13,6 +13,6 @@ class RegistrationData {
       this.email = '',
       this.password = '',
       this.selectedGenres = const [],
-      this.selectedLanguage = '',
+      this.selectedLang = '',
       this.profileImage});
 }

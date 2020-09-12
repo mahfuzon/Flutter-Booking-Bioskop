@@ -7,6 +7,7 @@ import 'package:flutix/bloc/blocs.dart';
 import 'package:flutix/models/registration_data.dart';
 import 'package:flutix/services/services.dart';
 import 'package:flutix/shared/shared.dart';
+import 'package:flutix/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,8 +25,7 @@ part "account_confirmation_page.dart";
 part "preference_page.dart";
 part "sign_up_page.dart";
 
-final picker = ImagePicker();
-Future<File> getProfileImage() async {
-  var image = await picker.getImage(source: ImageSource.gallery);
-  return File(image.path);
+Future<File> getImage() async {
+  var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+  return image;
 }

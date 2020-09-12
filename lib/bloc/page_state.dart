@@ -9,7 +9,7 @@ class OnInitialPage extends PageState {
   List<Object> get props => [];
 }
 
-class OnLoginlPage extends PageState {
+class OnLoginPage extends PageState {
   @override
   List<Object> get props => [];
 }

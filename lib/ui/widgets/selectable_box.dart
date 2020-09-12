@@ -39,10 +39,12 @@ class SelectableBox extends StatelessWidget {
                 : isSelected ? Colors.transparent : Color(0xffe4e4e4),
           ),
         ),
-        child: Text(
-          text ?? "None",
-          style: (textStyle ?? blackTextFont)
-              .copyWith(fontSize: 16, fontWeight: FontWeight.w400),
+        child: Center(
+          child: Text(
+            text ?? "None",
+            style: (textStyle ?? blackTextFont)
+                .copyWith(fontSize: 16, fontWeight: FontWeight.w400),
+          ),
         ),
       ),
     );
