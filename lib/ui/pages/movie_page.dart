@@ -66,7 +66,7 @@ class MoviePage extends StatelessWidget {
                                 78,
                             child: Text(
                               userState.user.name,
-                              style: whitekTextFont.copyWith(fontSize: 18),
+                              style: whiteTextFont.copyWith(fontSize: 18),
                               maxLines: 1,
                               overflow: TextOverflow.clip,
                             ),

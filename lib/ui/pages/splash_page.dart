@@ -41,7 +41,7 @@ class SplashPage extends StatelessWidget {
                       .add(GoToRegistrationPage(RegistrationData()));
                 },
                 child: Text('Get Started',
-                    style: whitekTextFont.copyWith(fontSize: 16)),
+                    style: whiteTextFont.copyWith(fontSize: 16)),
               ),
             ),
             // AKHIR BUTTON GET STARTED
