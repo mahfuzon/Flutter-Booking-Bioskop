@@ -19,6 +19,14 @@ class MoviePage extends StatelessWidget {
             child: BlocBuilder<UserBloc, UserState>(
               builder: (_, userState) {
                 if (userState is UserLoaded) {
+                  if (imageFileToUpload != null) {
+                    uploadImage(imageFileToUpload).then((downloadURL) {
+                      imageFileToUpload = null;
+                      context
+                          .bloc<UserBloc>()
+                          .add(UpdateData(profileImage: downloadURL));
+                    });
+                  }
                   return Row(
                     children: [
                       // IMAGE

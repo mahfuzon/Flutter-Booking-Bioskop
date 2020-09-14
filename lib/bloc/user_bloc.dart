@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutix/models/models.dart';
@@ -20,6 +19,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       yield UserLoaded(user);
     } else if (event is SignOut) {
       yield UserInitial();
+    } else if (event is UpdateData) {
+      User updateUser = (state as UserLoaded)
+          .user
+          .copyWith(name: event.name, profilePicture: event.profileImage);
+      yield UserLoaded(updateUser);
     }
   }
 }
