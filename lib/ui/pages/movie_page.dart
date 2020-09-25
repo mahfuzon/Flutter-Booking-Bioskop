@@ -109,6 +109,32 @@ class MoviePage extends StatelessWidget {
             // AKHIR CONTENT
             ),
         // AKHIR HEADER
+        // ISI MOVIE
+        Container(
+          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          child: Text("Now Playing",
+              style: blackTextFont.copyWith(
+                  fontSize: 18, fontWeight: FontWeight.bold)),
+        ),
+        SizedBox(
+          height: 140,
+          child: BlocBuilder<MovieBloc, MovieState>(builder: (_, movieState) {
+            if (movieState is MovieLoaded) {
+              List<Movie> movies = movieState.movies.sublist(0, 10);
+              return ListView.builder(
+                itemBuilder: (_, index) => Container(
+                  margin: EdgeInsets.all(5),
+                  child: Text(movies[index].title),
+                ),
+                itemCount: movies.length,
+                scrollDirection: Axis.horizontal,
+              );
+            } else {
+              return SpinKitFadingCircle(color: mainColor, size: 50);
+            }
+          }),
+        ),
+        // AKHIR ISI MOVIE
       ],
     );
   }

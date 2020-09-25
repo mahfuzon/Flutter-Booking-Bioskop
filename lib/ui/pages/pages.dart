@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutix/bloc/blocs.dart';
+import 'package:flutix/models/models.dart';
 import 'package:flutix/models/registration_data.dart';
 import 'package:flutix/services/services.dart';
 import 'package:flutix/shared/shared.dart';
