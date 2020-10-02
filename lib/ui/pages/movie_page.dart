@@ -124,7 +124,7 @@ class MoviePage extends StatelessWidget {
               return ListView.builder(
                 itemBuilder: (_, index) => Container(
                   margin: EdgeInsets.all(5),
-                  child: Text(movies[index].title),
+                  child: MovieCard(movies[index]),
                 ),
                 itemCount: movies.length,
                 scrollDirection: Axis.horizontal,
