@@ -81,7 +81,7 @@ class _MainPageState extends State<MainPage> {
           child: Container(
             height: 70,
             decoration: BoxDecoration(
-              color: accentColor1,
+              color: Colors.white,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
@@ -97,14 +97,17 @@ class _MainPageState extends State<MainPage> {
               items: [
                 BottomNavigationBarItem(
                   icon: Container(
-                      margin: EdgeInsets.only(bottom: 6),
-                      height: 20,
-                      child: Image.asset((bottomNavbarIndex == 0)
-                          ? "assets/ic_movie.png"
-                          : "assets/ic_movie_grey.png")),
-                  title: Text('New Movies',
-                      style: GoogleFonts.raleway(
-                          fontSize: 13, fontWeight: FontWeight.w600)),
+                    margin: EdgeInsets.only(bottom: 6),
+                    height: 20,
+                    child: Image.asset((bottomNavbarIndex == 0)
+                        ? "assets/ic_movie.png"
+                        : "assets/ic_movie_grey.png"),
+                  ),
+                  title: Text(
+                    'New Movies',
+                    style: GoogleFonts.raleway(
+                        fontSize: 13, fontWeight: FontWeight.w600),
+                  ),
                 ),
                 BottomNavigationBarItem(
                   icon: Container(
@@ -115,12 +118,14 @@ class _MainPageState extends State<MainPage> {
                           : "assets/ic_tickets_grey.png")),
                   title: Text('MyTickets',
                       style: GoogleFonts.raleway(
-                          fontSize: 13, fontWeight: FontWeight.w600)),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      )),
                 ),
               ],
               elevation: 0,
               backgroundColor: Colors.transparent,
-              selectedItemColor: mainColor,
+              selectedItemColor: accentColor1,
               unselectedItemColor: Color(0xffe5e5e5),
               currentIndex: bottomNavbarIndex,
             ),
