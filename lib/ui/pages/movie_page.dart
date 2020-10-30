@@ -207,7 +207,7 @@ class MoviePage extends StatelessWidget {
           ),
         ),
         // WIDGET: Get Lucky Day
-          Container(
+        Container(
           margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text("Get Lucky Day",
               style: blackTextFont.copyWith(
@@ -227,6 +227,7 @@ class MoviePage extends StatelessWidget {
                   ),
                 )
                 .toList()),
+        SizedBox(height: 80),
       ],
     );
   }
