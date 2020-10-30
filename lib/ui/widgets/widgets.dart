@@ -7,3 +7,4 @@ part 'raiting_starts.dart';
 part 'movie_card.dart';
 part "browseButton.dart";
 part "coomingSoonCard.dart";
+part "promo_card.dart";

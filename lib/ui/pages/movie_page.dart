@@ -206,6 +206,27 @@ class MoviePage extends StatelessWidget {
             },
           ),
         ),
+        // WIDGET: Get Lucky Day
+          Container(
+          margin: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          child: Text("Get Lucky Day",
+              style: blackTextFont.copyWith(
+                  fontSize: 18, fontWeight: FontWeight.bold)),
+        ),
+        Column(
+            children: dummy_promo
+                .map(
+                  (e) => Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      defaultMargin,
+                      0,
+                      defaultMargin,
+                      16,
+                    ),
+                    child: PromoCard(e),
+                  ),
+                )
+                .toList()),
       ],
     );
   }
