@@ -4,3 +4,5 @@ import 'package:flutter/material.dart';
 part 'user.dart';
 part "movie.dart";
 part 'promo.dart';
+part "movie_detail.dart";
+part "credit.dart";
