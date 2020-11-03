@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutix/models/models.dart';
 import 'package:flutix/models/registration_data.dart';
 
 part 'page_event.dart';
@@ -27,6 +28,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnPreferencePage(event.registrationData);
     } else if (event is GoToAccountConfirmationPage) {
       yield OnAccountConfirmationPage(event.registrationData);
+    } else if (event is GoToMovieDetailPage) {
+      yield OnMovieDetailPage(event.movie);
     }
   }
 }
