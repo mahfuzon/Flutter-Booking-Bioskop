@@ -19,3 +19,5 @@ TextStyle whiteNumberFont =
     GoogleFonts.openSans().copyWith(color: Colors.white);
 TextStyle yellowNumberFont =
     GoogleFonts.openSans().copyWith(color: accentColor2);
+TextStyle blackNumberFont =
+    GoogleFonts.openSans().copyWith(color: Colors.black);
