@@ -1,7 +1,7 @@
 import 'package:flutix/models/models.dart';
 import 'package:flutix/shared/shared.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import "package:flutix/extensions/extensions.dart";
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 part 'selectable_box.dart';
 part 'raiting_starts.dart';
@@ -10,3 +10,4 @@ part "browseButton.dart";
 part "coomingSoonCard.dart";
 part "promo_card.dart";
 part "credit_card.dart";
+part "date_card.dart";
