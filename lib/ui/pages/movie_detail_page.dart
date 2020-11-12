@@ -200,7 +200,12 @@ class MovieDetailPage extends StatelessWidget {
                               "Continue to Book",
                               style: whiteTextFont.copyWith(fontSize: 16),
                             ),
-                            onPressed: () {}),
+                            onPressed: () {
+                              // menambahkan function agar bisa berpindah halaman
+                              context
+                                  .bloc<PageBloc>()
+                                  .add(GoToSelectSchedulePage(movieDetail));
+                            }),
                         SizedBox(height: defaultMargin)
                       ],
                     );

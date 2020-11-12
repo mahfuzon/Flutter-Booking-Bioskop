@@ -54,3 +54,11 @@ class OnMovieDetailPage extends PageState {
   @override
   List<Object> get props => throw UnimplementedError();
 }
+
+// Memberikan keadaan kalau sedang berada di select schedulepage
+class OnSelectSchedulePage extends PageState {
+  final MovieDetail movieDetail;
+  OnSelectSchedulePage(this.movieDetail);
+  @override
+  List<Object> get props => [movieDetail];
+}

@@ -49,3 +49,11 @@ class GoToMovieDetailPage extends PageEvent {
   @override
   List<Object> get props => [movie];
 }
+
+// Mengidentifikasi jikalau ada event untuk pindah ke page SelectSchedulePage
+class GoToSelectSchedulePage extends PageEvent {
+  final MovieDetail movieDetail;
+  GoToSelectSchedulePage(this.movieDetail);
+  @override
+  List<Object> get props => [movieDetail];
+}
