@@ -1,0 +1,18 @@
+part of "models.dart";
+
+class Theater extends Equatable {
+  // menampung nama bioskop
+  final String name;
+
+  Theater(this.name);
+  @override
+  List<Object> get props => [name];
+}
+
+// Membuat dummy Theater
+List<Theater> dummyTheater = [
+  Theater("CGV 23 Paskal Hyper Square"),
+  Theater("CGV Paris Van Java"),
+  Theater("XXI Cihampelas Walk"),
+  Theater("XXI Bandung Trade Center"),
+];

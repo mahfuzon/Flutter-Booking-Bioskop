@@ -15,6 +15,12 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
   List<DateTime> dates;
   // properti untuk menampung tanggal yang dipilih user
   DateTime selectedDate;
+  // menampung waktu yang dipilih user
+  int selectedTime;
+  // menampung bioskop yang dipilih user
+  Theater selectedTheater;
+  // digunakan untuk mengecek waktu dan theater yang dipilih sesuai
+  bool isValid = false;
 
   @override
   void initState() {
@@ -102,11 +108,91 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                     ),
                   ),
                 ),
+                // WIDGET: Pilih Bioskop
+                generateTimeTable(),
+                SizedBox(height: 10),
+                // WIDGET: Button Next
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FloatingActionButton(
+                      elevation: 0,
+                      backgroundColor:
+                          (isValid) ? mainColor : Color(0XFFE4E4E4),
+                      onPressed: () {},
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: (isValid) ? Colors.white : Color(0XFFBEBEBE),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Column generateTimeTable() {
+    // Membuat list jam dengan jeda tiap jam adalah 2 jam
+    List<int> schedule = List.generate(7, (index) => 10 + index * 2);
+    // list untuk menampung widget yang berisikan nama bioskop
+    List<Widget> widget = [];
+    // WIDGET: Nama Bioskop
+    for (var theater in dummyTheater) {
+      widget.add(
+        Container(
+          margin: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
+          child: Text(
+            theater.name,
+            style: blackTextFont.copyWith(fontSize: 20),
+          ),
+        ),
+      );
+
+      // WIDGET: Jam Tayang
+      widget.add(
+        Container(
+          height: 50,
+          margin: EdgeInsets.only(bottom: 20),
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: schedule.length,
+            itemBuilder: (_, index) => Container(
+              margin: EdgeInsets.only(
+                  left: (schedule[index] == 0) ? defaultMargin : 16,
+                  right: (schedule[index] == schedule.length - 1)
+                      ? defaultMargin
+                      : 0),
+              child: SelectableBox(
+                "${schedule[index]}:00",
+                // mengecek apakah jam yang dipilih sesuai dengan bioskopnya
+                isSelected: selectedTheater == theater &&
+                    selectedTime == schedule[index],
+                // selectedBox hanya bisa digunakan jika jam tayang lebih besar dari waktu sekarang dan harinya tidak sama dengan hari ini
+                isEnabled: schedule[index] > DateTime.now().hour ||
+                    selectedDate.day != DateTime.now().day,
+                onTap: () {
+                  setState(() {
+                    selectedTheater = theater;
+                    selectedTime = schedule[index];
+                    isValid = true;
+                  });
+                },
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: widget,
     );
   }
 }
