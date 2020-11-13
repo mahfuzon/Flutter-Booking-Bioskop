@@ -62,3 +62,11 @@ class OnSelectSchedulePage extends PageState {
   @override
   List<Object> get props => [movieDetail];
 }
+
+// Memberikan keadaan kalau sedang berada di select Seat Page
+class OnSelectSeatsPage extends PageState {
+  final Ticket ticket;
+  OnSelectSeatsPage(this.ticket);
+  @override
+  List<Object> get props => [ticket];
+}

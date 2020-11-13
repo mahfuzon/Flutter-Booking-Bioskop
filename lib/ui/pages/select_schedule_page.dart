@@ -115,14 +115,39 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FloatingActionButton(
-                      elevation: 0,
-                      backgroundColor:
-                          (isValid) ? mainColor : Color(0XFFE4E4E4),
-                      onPressed: () {},
-                      child: Icon(
-                        Icons.arrow_forward,
-                        color: (isValid) ? Colors.white : Color(0XFFBEBEBE),
+                    // karena membutuhkan nama user yang login maka di gunakan blocBuilder
+                    BlocBuilder<UserBloc, UserState>(
+                      builder: (context, userState) => FloatingActionButton(
+                        elevation: 0,
+                        backgroundColor:
+                            (isValid) ? mainColor : Color(0XFFE4E4E4),
+                        onPressed: () {
+                          if (isValid) {
+                            context.bloc<PageBloc>().add(
+                                  GoToSelectSeatsPage(
+                                    // membutuhkan objek Ticket
+                                    Ticket(
+                                      widget.movieDetail,
+                                      selectedTheater,
+                                      // saat inisialisasi objel DateTime Maka memerlukan beberapa Parameter
+                                      DateTime(
+                                          selectedDate.year,
+                                          selectedDate.month,
+                                          selectedDate.day,
+                                          selectedTime),
+                                      randomAlphaNumeric(12).toUpperCase(),
+                                      null,
+                                      (userState as UserLoaded).user.name,
+                                      null,
+                                    ),
+                                  ),
+                                );
+                          }
+                        },
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: (isValid) ? Colors.white : Color(0XFFBEBEBE),
+                        ),
                       ),
                     ),
                     SizedBox(
