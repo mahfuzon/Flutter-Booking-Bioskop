@@ -9,6 +9,7 @@ class SelectSeatsPage extends StatefulWidget {
 }
 
 class _SelectSeatsPageState extends State<SelectSeatsPage> {
+  List<String> selectedSeats = [];
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -102,6 +103,26 @@ class _SelectSeatsPageState extends State<SelectSeatsPage> {
                     ),
                     // WIDGET: SEATS
                     generateSeats(),
+                    SizedBox(height: 30),
+                    // WIDGET: Button
+                    Column(
+                      children: [
+                        FloatingActionButton(
+                          onPressed: () {},
+                          elevation: 0,
+                          backgroundColor: (selectedSeats.length > 0)
+                              ? mainColor
+                              : Color(0xFFE4E4E4),
+                          child: Icon(
+                            Icons.arrow_forward,
+                            color: (selectedSeats.length > 0)
+                                ? Colors.white
+                                : Color(0xFFBEBEBE),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 30),
                   ],
                 ),
               ],
@@ -127,9 +148,29 @@ class _SelectSeatsPageState extends State<SelectSeatsPage> {
                 bottom: 16,
               ),
               child: SelectableBox(
-                "A",
+                // baris dilihat dari variabel yang digunakan untuk perulangan
+                // sedangkan kolom dilihat dari index nya
+                // mendapatkan isi dari selectable box menggunakan code asci
+                "${String.fromCharCode(i + 65)}${index + 1}",
                 width: 40,
                 height: 40,
+                textStyle: blackNumberFont,
+                isSelected: selectedSeats
+                    .contains("${String.fromCharCode(i + 65)}${index + 1}"),
+                onTap: () {
+                  String seatNumber =
+                      "${String.fromCharCode(i + 65)}${index + 1}";
+                  setState(
+                    () {
+                      if (selectedSeats.contains(seatNumber)) {
+                        selectedSeats.remove(seatNumber);
+                      } else {
+                        selectedSeats.add(seatNumber);
+                      }
+                    },
+                  );
+                },
+                isEnabled: index != 0,
               ),
             ),
           ),
