@@ -108,7 +108,13 @@ class _SelectSeatsPageState extends State<SelectSeatsPage> {
                     Column(
                       children: [
                         FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: (selectedSeats != [])
+                              ? () {
+                                  context
+                                      .bloc<PageBloc>()
+                                      .add(GoToCheckoutPage(widget.ticket));
+                                }
+                              : null,
                           elevation: 0,
                           backgroundColor: (selectedSeats.length > 0)
                               ? mainColor

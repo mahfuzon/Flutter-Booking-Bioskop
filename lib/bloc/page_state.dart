@@ -70,3 +70,11 @@ class OnSelectSeatsPage extends PageState {
   @override
   List<Object> get props => [ticket];
 }
+
+// Memberikan keadaan kalau sedang berada di Checkout Page
+class OnCheckoutPage extends PageState {
+  final Ticket ticket;
+  OnCheckoutPage(this.ticket);
+  @override
+  List<Object> get props => [ticket];
+}
