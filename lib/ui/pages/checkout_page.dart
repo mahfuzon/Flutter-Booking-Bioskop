@@ -11,6 +11,7 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   @override
   Widget build(BuildContext context) {
+    int total = 26500 * widget.ticket.seats.length;
     return WillPopScope(
       onWillPop: () async {
         context.bloc<PageBloc>().add(GoToSelectSeatsPage(widget.ticket));
@@ -114,6 +115,266 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                   ],
                                 ),
                               ],
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                vertical: 20,
+                                horizontal: defaultMargin,
+                              ),
+                              child: Divider(
+                                color: Color(0xFFE4E4E4),
+                                thickness: 1,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: defaultMargin),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Order ID",
+                                    style: greyTextFont.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Text(
+                                    widget.ticket.bookingCode,
+                                    style: whiteNumberFont.copyWith(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 9),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: defaultMargin),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Cinema",
+                                    style: greyTextFont.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.55,
+                                    child: Text(
+                                      widget.ticket.theater.name,
+                                      style: whiteNumberFont.copyWith(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: defaultMargin),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Date & Time",
+                                    style: greyTextFont.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Text(
+                                    widget.ticket.time.dateAndTime,
+                                    style: whiteNumberFont.copyWith(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 9),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: defaultMargin),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Seat Numbers",
+                                    style: greyTextFont.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.55,
+                                    child: Text(
+                                      widget.ticket.seatsInString,
+                                      style: whiteNumberFont.copyWith(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 9),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: defaultMargin),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Price",
+                                    style: greyTextFont.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Text(
+                                    "IDR. 25.000 x ${widget.ticket.seats.length}",
+                                    style: whiteNumberFont.copyWith(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 9),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: defaultMargin),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Fee",
+                                    style: greyTextFont.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Text(
+                                    "IDR. 1.500 x ${widget.ticket.bookingCode}",
+                                    style: whiteNumberFont.copyWith(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 9),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: defaultMargin),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Total",
+                                    style: greyTextFont.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Text(
+                                    NumberFormat.currency(
+                                      locale: 'id-ID',
+                                      decimalDigits: 0,
+                                      symbol: 'IDR',
+                                    ).format(total),
+                                    style: whiteNumberFont.copyWith(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                vertical: 20,
+                                horizontal: defaultMargin,
+                              ),
+                              child: Divider(
+                                color: Color(0xFFE4E4E4),
+                                thickness: 1,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: defaultMargin),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Your wallet",
+                                    style: greyTextFont.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Text(
+                                    NumberFormat.currency(
+                                      locale: 'id-ID',
+                                      decimalDigits: 0,
+                                      symbol: 'IDR',
+                                    ).format(user.balance),
+                                    style: whiteNumberFont.copyWith(
+                                        color: (user.balance >= total)
+                                            ? Color(0xFF3D9E9E)
+                                            : Color(0xFFFF5C83),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 250,
+                              height: 46,
+                              margin: EdgeInsets.only(top: 36, bottom: 50),
+                              child: RaisedButton(
+                                elevation: 0,
+                                color: (user.balance >= total)
+                                    ? Color(0xFF3E9D9D)
+                                    : mainColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Text(
+                                  (user.balance >= total)
+                                      ? "Checkout Now"
+                                      : "Top Up My Wallet",
+                                  style: whiteTextFont.copyWith(fontSize: 16),
+                                ),
+                                onPressed: () {},
+                              ),
                             ),
                           ],
                         );

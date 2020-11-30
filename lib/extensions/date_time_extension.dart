@@ -2,6 +2,11 @@ part of "extensions.dart";
 
 // membuat sebuah extenion untuk mengubah format waktu
 extension DateRimeExtension on DateTime {
+  // membuat format Date & Time
+  String get dateAndTime {
+    return '${this.shortDayName} ${this.day}, ${this.hour}:00';
+  }
+
   // membuat sebuah getter
   String get shortDayName {
     // membandingkan setiap hari dalam satu minggu dengan percabangan melalui index
