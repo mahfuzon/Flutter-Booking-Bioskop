@@ -8,3 +8,4 @@ part "movie_detail.dart";
 part "credit.dart";
 part "theater.dart";
 part "ticket.dart";
+part "flutix_transactions.dart";

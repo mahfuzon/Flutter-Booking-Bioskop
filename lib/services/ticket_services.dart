@@ -1,6 +1,7 @@
 part of "services.dart";
 
 class TicketServices {
+  // membuat collection baru di firestore
   static CollectionReference ticketCollection =
       Firestore.instance.collection('tickets');
   static Future<void> saveTicket(String id, Ticket ticket) async {
@@ -18,6 +19,7 @@ class TicketServices {
   }
 
   static Future<List<Ticket>> getTicket(String userId) async {
+    // mengambil kumpulan data ticket di firebase
     QuerySnapshot snapshot = await ticketCollection.getDocuments();
     // mengambil kumpulan ticket yang key mya sama dengan userId
     var documents =
